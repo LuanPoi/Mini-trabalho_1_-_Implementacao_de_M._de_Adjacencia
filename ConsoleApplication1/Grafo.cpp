@@ -7,6 +7,7 @@ Grafo::Grafo()
 
 Grafo::Grafo(int tamanho)
 {
+	this->tamanho = tamanho;
 	for (int i = 0; i < tamanho; ++i) {
 		for (int j = 0; j < tamanho; ++j) {
 			matrizADJ[i][j] = INFINITY;
@@ -21,8 +22,11 @@ Grafo::~Grafo()
 
 bool Grafo::cria_adjacencia(int de, int para, float peso)
 {
-	matrizADJ[de][para] = peso;
-	return true;
+	if (vertices[de] != NULL && vertices[para] != NULL) {
+		matrizADJ[de][para] = peso;
+		return true;
+	}
+	return false;
 }
 
 bool Grafo::remove_adjacencia(int de, int para)
@@ -31,7 +35,7 @@ bool Grafo::remove_adjacencia(int de, int para)
 	return true;
 }
 
-bool Grafo::cria_vertice(string nome, int indice) {
+bool Grafo::cria_vertice(int indice, string nome) {
 	if (vertices[indice] == NULL) {
 		vertices[indice] = new Vertice(nome, indice);
 		matrizADJ[indice][indice] = 0;
@@ -57,7 +61,7 @@ bool Grafo::remove_vertice(int indice){
 		matrizADJ[j][indice] = INFINITY;
 	}
 	if (vertices[indice] != NULL) {
-		vertices[indice]->~Vertice;
+		vertices[indice]->~Vertice();
 		vertices[indice] = NULL;
 	}
 	return true;
@@ -82,4 +86,22 @@ bool Grafo::seta_informacoes(int indice, string nome)
 {
 	vertices[indice]->setNome(nome);
 	return true;
+}
+
+void Grafo::printaNome() {
+	cout << nome << endl;
+}
+
+void Grafo::imprime() {
+	for (int i = 0; i < tamanho; ++i) {
+		cout << "\| ";
+		for (int j = 0; j < tamanho; ++j) {
+			cout << matrizADJ[i][j] << "  ";
+		}
+		cout << "\|" << endl;
+	}
+}
+
+Vertice* Grafo::getVertices(int indice) {
+	return this->vertices[indice];
 }
