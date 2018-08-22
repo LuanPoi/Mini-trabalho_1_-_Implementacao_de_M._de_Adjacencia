@@ -12,6 +12,7 @@ private:
 public:
 	Vertice();
 	Vertice(string nome, int indice);
+	Vertice::Vertice(int indice);
 	string getNome();
 	void setNome(string nome);
 	int getIndice();

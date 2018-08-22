@@ -14,6 +14,15 @@ Vertice::Vertice(string nome, int indice)
 	this->indice = indice;
 }
 
+Vertice::Vertice(int indice)
+{
+	this->indice = indice;
+}
+
+Vertice::~Vertice()
+{
+}
+
 string Vertice::getNome()
 {
 	return this->nome;
@@ -27,8 +36,4 @@ void Vertice::setNome(string nome)
 int Vertice::getIndice()
 {
 	return this->indice;
-}
-
-Vertice::~Vertice()
-{
 }

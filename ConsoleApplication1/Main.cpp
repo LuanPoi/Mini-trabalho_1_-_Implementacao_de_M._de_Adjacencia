@@ -3,5 +3,5 @@
 #include "Grafo.h"
 
 int main() {
-	Grafo grafo = new Grafo(10);
+	Grafo* grafo = new Grafo(10);
 }
